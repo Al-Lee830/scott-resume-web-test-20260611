@@ -12,37 +12,72 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
-			:root { --blood:#ff3b30; --ink:#fff7f7; --panel:#180b0b; --deep:#080404; }
+			:root { --accent:#4ea8de; --accent-strong:#2b7bbd; --ink:#f4f7fb; --muted:#dfe7f2; --panel:#151b24; --deep:#0b1016; }
 			body { background:
-				linear-gradient(135deg, rgba(20,4,4,0.98), rgba(70,2,2,0.96)),
-				url("images/me.jpg") center/cover no-repeat fixed;
+				linear-gradient(145deg, rgba(8,11,16,0.98), rgba(22,32,46,0.96)),
+				linear-gradient(120deg, rgba(78,168,222,0.08), transparent 20%, rgba(255,255,255,0.02) 45%, rgba(78,168,222,0.05) 100%);
 				color: var(--ink); font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif; }
-			body::before { content:""; position:fixed; inset:0; background:radial-gradient(circle at top, rgba(255,59,48,0.08), transparent 25%); pointer-events:none; }
+			body::before { content:""; position:fixed; inset:0; background:
+				radial-gradient(circle at top, rgba(78,168,222,0.08), transparent 26%),
+				repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 8px); pointer-events:none; }
 			#wrapper { max-width: 1100px; margin: 0 auto; padding: 24px; }
-			#nav { background: rgba(18, 5, 5, 0.92); border:1px solid rgba(255,59,48,0.35); border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
-			#nav a { color: #fff; text-transform: uppercase; letter-spacing: 0.18em; }
-			#nav a:hover { color: #ffd8d8; background: rgba(255,59,48,0.18); }
-			#main article.panel { background: rgba(18, 6, 6, 0.95); border:1px solid rgba(255,59,48,0.35); border-radius: 22px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); color: var(--ink); }
-			#main article.panel h1, #main article.panel h2, #main article.panel h3 { color: #fff7f7; text-shadow: 0 0 8px rgba(255,59,48,0.35); }
-			#main article.panel p, #main article.panel li { color: #ffe8e8; }
-			.eyebrow { color: #ffb4b4; text-transform: uppercase; letter-spacing: 0.28em; font-size: 0.85em; }
-			.lead { font-size: 1.05em; color: #ffdede; }
+			#nav { background: rgba(11, 16, 22, 0.92); border:1px solid rgba(78,168,222,0.18); border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
+			#nav a { color: #edf5ff; text-transform: uppercase; letter-spacing: 0.18em; }
+			#nav a:hover { color: #ffffff; background: rgba(78,168,222,0.12); }
+			#main article.panel { background: rgba(17, 22, 29, 0.95); border:1px solid rgba(78,168,222,0.18); border-radius: 22px; box-shadow: 0 18px 40px rgba(0,0,0,0.35); color: var(--ink); overflow:hidden; }
+			#main article.panel h1, #main article.panel h2, #main article.panel h3 { color: #ffffff; text-shadow: none; }
+			.hero-shell { display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 18px; align-items:center; }
+			.hero-copy { display:flex; flex-direction:column; gap:8px; }
+			.hero-badge { display:inline-block; padding:6px 10px; border-radius:999px; background: rgba(78,168,222,0.10); border:1px solid rgba(78,168,222,0.24); text-transform:uppercase; letter-spacing:0.25em; font-size:0.72em; color:#dbeaff; }
+			.hero-sub { font-size: 0.98rem; color:#dfe7f2; max-width: 32rem; margin: 0; }
+			.hero-strip { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+			.hero-strip span { display:inline-block; padding:6px 10px; border-radius:999px; background: rgba(255,255,255,0.06); border:1px solid rgba(78,168,222,0.18); color:#edf5ff; font-size:0.88em; }
+			.hero-photo {
+				border: 1px solid rgba(255, 215, 0, 0.35);
+				border-radius: 18px;
+				overflow: hidden;
+				background: rgba(10,15,20,0.92);
+				min-height: 260px;
+				box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.12), 0 0 18px rgba(255, 215, 0, 0.12), inset 0 0 10px rgba(255, 215, 0, 0.08);
+			}
+			.hero-photo::after {
+				content: "";
+				position: absolute;
+				inset: -2px;
+				border-radius: 20px;
+				background: linear-gradient(120deg, rgba(255,255,255,0.18), rgba(255,215,0,0.15), rgba(255,255,255,0.08), rgba(255,215,0,0.16));
+				filter: blur(2px);
+				z-index: -1;
+			}
+			.hero-photo a { display:block; position:relative; width:100%; height:100%; min-height:260px; }
+			.hero-photo img { display:block; width:100%; height:100%; min-height:260px; object-fit:cover; object-position:center; }
+			.hero-photo .arrow { position:absolute; left:10px; bottom:10px; background: rgba(8,13,18,0.78); border:1px solid rgba(78,168,222,0.20); border-radius:999px; padding:6px 10px; color:#fff; font-size:0.86em; }
+			#main > .panel.intro { height: 20em; display:flex; align-items:center; }
+			#main > .panel.intro .pic { width: 17em; height: 100%; border-radius: 18px; overflow:hidden; border:1px solid rgba(78,168,222,0.18); }
+			#main > .panel.intro .pic img { width:100%; height:100%; object-fit:cover; object-position:center; }
+			#main > .panel.intro header { padding: 3em 2em; }
+			#main > .panel.intro header h1 { font-size: 2rem; line-height:1.1; }
+			#main > .panel.intro header p { font-size: 1rem; }
+			.hero-photo .arrow { position:absolute; left:10px; bottom:10px; background: rgba(8,13,18,0.78); border:1px solid rgba(78,168,222,0.20); border-radius:999px; padding:6px 10px; color:#fff; font-size:0.86em; }
+			#main article.panel p, #main article.panel li { color: #e5edf6; }
+			.eyebrow { color: #a9c7e4; text-transform: uppercase; letter-spacing: 0.28em; font-size: 0.85em; }
+			.lead { font-size: 1.05em; color: #dbe6f2; }
 			.resume-tags { display:flex; flex-wrap:wrap; gap:8px; padding:0; list-style:none; margin:16px 0 0; }
-			.resume-tags li { background: rgba(255,59,48,0.12); border:1px solid rgba(255,59,48,0.35); border-radius: 999px; padding: 6px 10px; font-size: 0.92em; color:#ffe1e1; }
+			.resume-tags li { background: rgba(78,168,222,0.10); border:1px solid rgba(78,168,222,0.18); border-radius: 999px; padding: 6px 10px; font-size: 0.92em; color:#edf5ff; }
 			.resume-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:16px; margin-top:18px; }
-			.resume-card { background:linear-gradient(145deg, rgba(26,7,7,0.98), rgba(41,7,7,0.95)); border:1px solid rgba(255,59,48,0.35); border-radius:18px; padding:14px; }
-			.skill-row { display:flex; justify-content:space-between; font-size:0.95em; color:#ffe2e2; margin:8px 0 4px; }
+			.resume-card { background:linear-gradient(145deg, rgba(19,25,33,0.98), rgba(28,37,48,0.95)); border:1px solid rgba(78,168,222,0.18); border-radius:18px; padding:14px; }
+			.skill-row { display:flex; justify-content:space-between; font-size:0.95em; color:#e3ecf7; margin:8px 0 4px; }
 			.skill-bar { height:8px; border-radius:999px; background: rgba(255,255,255,0.08); overflow:hidden; }
-			.skill-bar span { display:block; height:100%; background:linear-gradient(90deg, #ff5d4d, #ff1b1b); border-radius:999px; }
-			.timeline { list-style:none; padding:0; margin:0; border-left:2px solid rgba(255,59,48,0.35); }
+			.skill-bar span { display:block; height:100%; background:linear-gradient(90deg, #5bb7f0, #2b7bbd); border-radius:999px; }
+			.timeline { list-style:none; padding:0; margin:0; border-left:2px solid rgba(78,168,222,0.18); }
 			.timeline li { position:relative; padding:0 0 10px 14px; }
-			.timeline li::before { content:""; position:absolute; left:-6px; top:6px; width:10px; height:10px; border-radius:50%; background:#ff5d4d; box-shadow:0 0 0 4px rgba(255,59,48,0.12); }
-			.warning-box { background: rgba(255,59,48,0.08); border:1px solid rgba(255,59,48,0.35); border-radius:16px; padding:12px; color:#ffe4e4; }
-			#contact input, #contact textarea { background: rgba(255,255,255,0.06); border:1px solid rgba(255,59,48,0.25); color:#fff; border-radius:12px; }
-			#contact input::placeholder, #contact textarea::placeholder { color:#ffc8c8; }
-			#contact input[type="submit"] { background: linear-gradient(135deg, #ff4d3d, #c70000); color:#fff; border:none; box-shadow: 0 10px 20px rgba(199,0,0,0.25); }
-			#footer .copyright { color:#ffdddd; }
-			#footer .copyright a { color:#ffb0b0; }
+			.timeline li::before { content:""; position:absolute; left:-6px; top:6px; width:10px; height:10px; border-radius:50%; background:#5bb7f0; box-shadow:0 0 0 4px rgba(78,168,222,0.12); }
+			.warning-box { background: rgba(78,168,222,0.08); border:1px solid rgba(78,168,222,0.18); border-radius:16px; padding:12px; color:#eaf4ff; }
+			#contact input, #contact textarea { background: rgba(255,255,255,0.06); border:1px solid rgba(78,168,222,0.18); color:#fff; border-radius:12px; }
+			#contact input::placeholder, #contact textarea::placeholder { color:#d6e6f7; }
+			#contact input[type="submit"] { background: linear-gradient(135deg, #4ea8de, #2b7bbd); color:#fff; border:none; box-shadow: 0 10px 20px rgba(43,123,189,0.25); }
+			#footer .copyright { color:#dbe6f2; }
+			#footer .copyright a { color:#b9d6f3; }
 			@media (max-width: 980px) { .resume-grid { grid-template-columns: 1fr; } }
 		</style>
 	</head>
@@ -64,21 +99,25 @@
 
 						<!-- Me -->
 							<article id="home" class="panel intro">
-								<header>
-									<p class="eyebrow">Scott Resume Style</p>
-									<h1>Scott Lee</h1>
-									<p class="lead">恐怖感十足的履歷頁面設計師｜專精於高衝擊視覺、強烈品牌主張與驚悚氛圍的網頁表現。</p>
-									<ul class="resume-tags">
-										<li>UI / UX</li>
-										<li>品牌視覺</li>
-										<li>履歷頁設計</li>
-										<li>高對比排版</li>
-									</ul>
-								</header>
-								<a href="#work" class="jumplink pic">
-									<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
-									<img src="images/20260610_161408(1).jpg" alt="Scott resume portrait" />
-								</a>
+								<div class="hero-shell">
+									<header class="hero-copy">
+										<p class="hero-badge">Scott Resume Style</p>
+										<h1>Scott Lee</h1>
+										<p class="hero-sub">恐怖感十足的履歷頁面設計師｜專精於高衝擊視覺、強烈品牌主張與驚悚氛圍的網頁表現。</p>
+										<div class="hero-strip">
+											<span>UI / UX</span>
+											<span>品牌視覺</span>
+											<span>履歷頁設計</span>
+											<span>高對比排版</span>
+										</div>
+									</header>
+									<div class="hero-photo">
+										<a href="#work" class="jumplink">
+											<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
+											<img src="images/20260610_161408(1).jpg" alt="Scott resume portrait" />
+										</a>
+									</div>
+								</div>
 							</article>
 
 						<!-- Work -->
@@ -87,7 +126,7 @@
 									<h2>履歷亮點</h2>
 									<p class="eyebrow">Work & Skills</p>
 								</header>
-								<p class="lead">這是一個帶有強烈紅色警示感與驚悚氛圍的履歷風格頁面，重點突出工作能力、專業技能與個人品牌。</p>
+								<p class="lead">這是一個乾淨且有辨識度的履歷風格頁面，重點突出工作能力、專業技能與個人品牌。</p>
 								<div class="resume-grid">
 									<div class="resume-card">
 										<h3>核心能力</h3>
@@ -112,7 +151,7 @@
 									</div>
 									<div class="resume-card warning-box">
 										<h3>提醒</h3>
-										<p>這個版本刻意強調警示紅、驚悚感與強烈重點，讓履歷頁更有辨識度與記憶點。</p>
+										<p>這個版本採用較柔和的配色與清晰的區塊設計，讓履歷頁更專業、更容易被閱讀。</p>
 									</div>
 								</div>
 								<section>
